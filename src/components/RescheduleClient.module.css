@@ -1,0 +1,318 @@
+.page {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(86, 52, 132, 0.32), transparent 32rem),
+    linear-gradient(145deg, #14101d 0%, #191525 52%, #0f1724 100%);
+  color: #f1eef8;
+  min-height: 100vh;
+  padding: 28px 16px 48px;
+}
+
+.shell {
+  display: grid;
+  gap: 22px;
+  margin: 0 auto;
+  max-width: 900px;
+  width: 100%;
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+}
+
+.header p {
+  color: #b08bea;
+  font-size: 14px;
+  font-weight: 750;
+  margin: 0;
+}
+
+.header h1,
+.errorBox h1,
+.successBox h1 {
+  font-size: 32px;
+  letter-spacing: 0;
+  line-height: 1.12;
+  margin: 0;
+}
+
+.infoBox,
+.panel,
+.errorBox,
+.successBox {
+  background: rgba(24, 19, 34, 0.88);
+  border: 1px solid #3a304a;
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.infoBox {
+  color: #c9c0d7;
+  line-height: 1.5;
+}
+
+.infoBox strong {
+  color: #f1eef8;
+}
+
+.infoBox a,
+.errorBox a,
+.successBox a {
+  align-items: center;
+  background: #7a4cc2;
+  border: 1px solid #9a73d6;
+  border-radius: 8px;
+  color: #f7f2ff;
+  display: inline-flex;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 14px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.panel h2 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.suggestionBox {
+  background: #211a2f;
+  border: 1px solid #3a304a;
+  border-radius: 8px;
+  color: #c9c0d7;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+.suggestionBox > strong {
+  color: #f1eef8;
+}
+
+.suggestionBox > span {
+  color: #b8abc9;
+  font-size: 14px;
+}
+
+.suggestionGrid {
+  display: grid;
+  gap: 9px;
+}
+
+.suggestionGrid button {
+  background: #161221;
+  border: 1px solid #3a304a;
+  border-radius: 8px;
+  color: #f1eef8;
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  gap: 4px;
+  min-height: 64px;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.suggestionGrid button span {
+  color: #b08bea;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.suggestionGrid button strong {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.suggestionGrid .selectedSuggestion {
+  background: #3a2359;
+  border-color: #8f63d8;
+  box-shadow: 0 0 0 3px rgba(143, 99, 216, 0.18);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: space-between;
+}
+
+.primaryButton,
+.secondaryButton,
+.dangerButton {
+  align-items: center;
+  border-radius: 8px;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+}
+
+.primaryButton {
+  background: #7a4cc2;
+  border: 1px solid #9a73d6;
+  color: #f7f2ff;
+}
+
+.primaryButton:disabled {
+  background: #49395f;
+  border-color: #49395f;
+  color: #9488aa;
+  cursor: not-allowed;
+}
+
+.secondaryButton {
+  background: #211a2f;
+  border: 1px solid #3a304a;
+  color: #f1eef8;
+}
+
+.dangerButton {
+  background: #a4344c;
+  border: 1px solid #d05a70;
+  color: #fff0f4;
+}
+
+.cancelLink {
+  background: transparent;
+  border: 0;
+  color: #b8abc9;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.error {
+  background: #331826;
+  border: 1px solid #7a2c4a;
+  border-radius: 8px;
+  color: #ffb7c7;
+  margin: 0;
+  padding: 12px;
+}
+
+.centerState {
+  align-items: center;
+  color: #c9c0d7;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.spinner,
+.buttonSpinner {
+  animation: spin 0.8s linear infinite;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.spinner {
+  border: 2px solid rgba(241, 238, 248, 0.42);
+  border-top-color: #b08bea;
+  height: 18px;
+  width: 18px;
+}
+
+.buttonSpinner {
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #ffffff;
+  height: 16px;
+  width: 16px;
+}
+
+.buttonLoading {
+  align-items: center;
+  display: inline-flex;
+  gap: 9px;
+}
+
+.modalBackdrop {
+  align-items: center;
+  background: rgba(10, 7, 16, 0.68);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 16px;
+  position: fixed;
+}
+
+.modal {
+  background: #1c1628;
+  border: 1px solid #3a304a;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(10, 7, 16, 0.42);
+  display: grid;
+  gap: 14px;
+  max-width: 440px;
+  padding: 22px;
+  width: 100%;
+}
+
+.modal h2,
+.modal p {
+  margin: 0;
+}
+
+.modal p {
+  color: #c9c0d7;
+  line-height: 1.5;
+}
+
+.modalActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.reasonField {
+  color: #f1eef8;
+  display: grid;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 8px;
+}
+
+.reasonField textarea {
+  background: #161221;
+  border: 1px solid #3a304a;
+  border-radius: 8px;
+  color: #f1eef8;
+  font: inherit;
+  min-height: 92px;
+  padding: 10px 12px;
+  resize: vertical;
+  width: 100%;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 640px) {
+  .page {
+    padding: 48px 24px 72px;
+  }
+
+  .infoBox,
+  .panel,
+  .errorBox,
+  .successBox {
+    padding: 28px;
+  }
+
+  .suggestionGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

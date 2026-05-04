@@ -1,0 +1,27 @@
+{
+  "name": "360-vista-meetings",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 6666",
+    "build": "next build",
+    "start": "next start -p 6666",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "@upstash/ratelimit": "^2.0.0",
+    "@upstash/redis": "^1.0.0",
+    "googleapis": "^144.0.0",
+    "ics": "^3.8.1",
+    "next": "^15.0.0",
+    "nodemailer": "^6.9.16",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.0.0"
+  }
+}
