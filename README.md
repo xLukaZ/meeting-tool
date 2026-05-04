@@ -27,6 +27,16 @@ GOOGLE_REDIRECT_URI="http://SERVER_IP:6666/api/team/callback"
 
 HubSpot Token und SMTP-Passwoerter werden verschluesselt in der Datenbank gespeichert, nicht in `.env`.
 
+HubSpot Private App Scopes:
+
+```bash
+crm.objects.contacts.read
+crm.objects.contacts.write
+crm.objects.owners.read
+crm.objects.appointments.read
+crm.objects.appointments.write
+```
+
 ## Setup
 
 ```bash

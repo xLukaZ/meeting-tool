@@ -3,6 +3,7 @@ import { decrypt, encrypt } from "./encrypt";
 
 const HUBSPOT_BASE = "https://api.hubapi.com";
 const GLOBAL_SETTINGS_ID = "global";
+const APPOINTMENTS_PATH = "/crm/v3/objects/appointments";
 
 export async function getHubSpotConfigured() {
   const settings = await prisma.hubSpotSettings.findUnique({
@@ -112,21 +113,20 @@ async function findOwnerByEmail(email) {
   }
 }
 
-function meetingProperties({ title, startTime, endTime, meetLink, ownerId, notes, outcome }) {
+function appointmentProperties({ title, startTime, endTime, meetLink, ownerId, notes, outcome }) {
   return {
     hs_timestamp: new Date(startTime).getTime().toString(),
-    hs_meeting_title: title,
-    hs_meeting_start_time: new Date(startTime).toISOString(),
-    hs_meeting_end_time: new Date(endTime).toISOString(),
-    hs_meeting_external_url: meetLink || "",
-    hs_meeting_location: meetLink ? "Google Meet" : "",
-    hs_meeting_outcome: outcome || "SCHEDULED",
-    hs_internal_meeting_notes: notes || "",
+    hs_appointment_name: title,
+    hs_appointment_start_time: new Date(startTime).toISOString(),
+    hs_appointment_end_time: new Date(endTime).toISOString(),
+    hs_appointment_location: meetLink || "",
+    hs_appointment_body: notes || "",
+    hs_appointment_status: outcome || "SCHEDULED",
     ...(ownerId ? { hubspot_owner_id: ownerId } : {}),
   };
 }
 
-export async function createHubSpotMeeting({
+export async function createHubSpotAppointment({
   contactId,
   ownerId,
   title,
@@ -135,10 +135,10 @@ export async function createHubSpotMeeting({
   meetLink,
   notes,
 }) {
-  return hubspotFetch("/crm/v3/objects/meetings", {
+  return hubspotFetch(APPOINTMENTS_PATH, {
     method: "POST",
     body: JSON.stringify({
-      properties: meetingProperties({
+      properties: appointmentProperties({
         title,
         startTime,
         endTime,
@@ -171,12 +171,12 @@ export async function updateHubSpotMeeting({
   notes,
   outcome,
 }) {
-  if (!hubspotMeetingId) throw new Error("HubSpot Meeting ID fehlt.");
+  if (!hubspotMeetingId) throw new Error("HubSpot Appointment ID fehlt.");
 
-  return hubspotFetch(`/crm/v3/objects/meetings/${hubspotMeetingId}`, {
+  return hubspotFetch(`${APPOINTMENTS_PATH}/${hubspotMeetingId}`, {
     method: "PATCH",
     body: JSON.stringify({
-      properties: meetingProperties({
+      properties: appointmentProperties({
         title,
         startTime,
         endTime,
@@ -199,7 +199,7 @@ export async function syncHubSpotBooking({ meeting, mitarbeiter, meetLink }) {
   });
   const owner = await findOwnerByEmail(mitarbeiter.email);
 
-  const hubspotMeeting = await createHubSpotMeeting({
+  const hubspotAppointment = await createHubSpotAppointment({
     contactId: contact.id,
     ownerId: owner?.id,
     title: `Meeting mit ${meeting.firstName} ${meeting.lastName}`,
@@ -211,7 +211,7 @@ export async function syncHubSpotBooking({ meeting, mitarbeiter, meetLink }) {
 
   return {
     hubspotContactEmail: meeting.email,
-    hubspotMeetingId: hubspotMeeting.id,
+    hubspotMeetingId: hubspotAppointment.id,
     hubspotOwnerEmail: owner?.email || mitarbeiter.email,
   };
 }
