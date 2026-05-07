@@ -1,0 +1,10 @@
+# Der Cron-Job wird automatisch eingerichtet durch:
+#   bash deployment/setup-cron.sh
+#
+# Das Script liest SESSION_SECRET und APP_URL direkt aus .env
+# und trägt folgende Zeile in die root-crontab ein:
+#
+#   */15 * * * * curl -sf -H "x-cron-secret: <SESSION_SECRET>" <APP_URL>/api/cron/reminders > /dev/null 2>&1
+#
+# Manuell prüfen ob der Cron läuft:
+#   crontab -l

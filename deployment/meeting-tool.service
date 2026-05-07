@@ -1,0 +1,26 @@
+# /etc/systemd/system/meeting-tool.service
+#
+# After placing this file run:
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable meeting-tool
+#   sudo systemctl start meeting-tool
+
+[Unit]
+Description=360 Vista Meeting Tool
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/meeting-tool
+EnvironmentFile=/var/www/meeting-tool/.env
+ExecStart=/usr/bin/node node_modules/.bin/next start
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=meeting-tool
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

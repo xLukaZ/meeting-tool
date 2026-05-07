@@ -1,0 +1,950 @@
+.dashboard {
+  background: #f8fafc;
+  color: #1a1a1a;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  min-height: 100vh;
+  min-width: 1024px;
+}
+
+.sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 24px;
+  padding: 22px 14px;
+}
+
+.brand {
+  color: #1a1a1a;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 0 8px;
+}
+
+.nav {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.nav button {
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  color: #475569;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  min-height: 42px;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.nav .activeNav {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.main {
+  display: grid;
+  gap: 22px;
+  padding: 28px;
+}
+
+.mainHeader {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainHeader p {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.mainHeader h1 {
+  font-size: 30px;
+  letter-spacing: 0;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.contentStack {
+  display: grid;
+  gap: 18px;
+}
+
+.statsGrid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.filterBar {
+  align-items: end;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 260px));
+  padding: 16px;
+}
+
+.filterBar label {
+  color: #475569;
+  display: grid;
+  font-size: 13px;
+  font-weight: 750;
+  gap: 7px;
+}
+
+.statCard,
+.panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.statCard {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+}
+
+.statCard span {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.statCard strong {
+  color: #1a1a1a;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.panel {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+.panel h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.panelHeader {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+}
+
+.panelHeader select,
+.filterBar select {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #1a1a1a;
+  font: inherit;
+  min-height: 40px;
+  padding: 8px 10px;
+}
+
+.filterControls {
+  display: flex;
+  gap: 10px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  min-width: 760px;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+  padding: 12px 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  color: #64748b;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.statusBadge {
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px 9px;
+  white-space: nowrap;
+}
+
+.reminderBadge {
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  max-width: 220px;
+  padding: 5px 9px;
+  white-space: normal;
+}
+
+.reminderStack {
+  display: grid;
+  gap: 5px;
+}
+
+.reminderplanned {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.reminderdue {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.remindersent {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.reminderfailed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.remindermuted {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.badgeActive {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badgeCancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.badgeCompleted,
+.badgeMuted {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.tableLink,
+.secondaryLink {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.teamList {
+  display: grid;
+  gap: 10px;
+}
+
+.teamRow {
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr auto auto;
+  padding: 14px;
+}
+
+.teamRow div {
+  display: grid;
+  gap: 4px;
+}
+
+.teamRow div span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.toggleList {
+  display: grid;
+  gap: 10px;
+}
+
+.toggleRow,
+.integrationRow {
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 54px;
+  padding: 12px 14px;
+}
+
+.toggleRow {
+  background: #ffffff;
+  color: #1a1a1a;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+}
+
+.toggle {
+  background: #cbd5e1;
+  border-radius: 999px;
+  display: inline-flex;
+  height: 24px;
+  padding: 3px;
+  transition: background 160ms ease;
+  width: 44px;
+}
+
+.toggle span {
+  background: #ffffff;
+  border-radius: 999px;
+  display: block;
+  height: 18px;
+  transition: transform 160ms ease;
+  width: 18px;
+}
+
+.toggleOn {
+  background: #2563eb;
+}
+
+.toggleOn span {
+  transform: translateX(20px);
+}
+
+.integrationRow strong {
+  font-size: 15px;
+}
+
+.integrationRow {
+  gap: 18px;
+}
+
+.integrationRow div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.integrationRow div:first-child span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.integrationActions,
+.rowActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.templateGrid {
+  display: grid;
+  gap: 14px;
+}
+
+.templateCard {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+.templateHeader {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 42px minmax(0, 1fr);
+}
+
+.disclosureButton {
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #1a1a1a;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.templateCard label,
+.modal label,
+.settingLabel {
+  color: #1a1a1a;
+  display: grid;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 7px;
+}
+
+.templateCard input,
+.templateCard textarea,
+.modal input,
+.modal textarea,
+.modal select,
+.settingLabel input {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #1a1a1a;
+  font: inherit;
+  min-height: 42px;
+  padding: 9px 11px;
+  width: 100%;
+}
+
+.staticSetting {
+  align-content: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  gap: 5px;
+  min-height: 66px;
+  padding: 10px 12px;
+}
+
+.staticSetting span {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.staticSetting strong {
+  color: #1a1a1a;
+  font-size: 15px;
+}
+
+.fieldHint {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 650;
+  margin: 0;
+}
+
+.templateCard textarea,
+.modal textarea {
+  min-height: 118px;
+  resize: vertical;
+}
+
+.templateCard h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.primaryButton,
+.secondaryButton,
+.secondaryLinkButton,
+.dangerButton {
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 750;
+  min-height: 40px;
+  padding: 9px 14px;
+  text-decoration: none;
+}
+
+.primaryButton {
+  background: #2563eb;
+  border: 1px solid #2563eb;
+  color: #ffffff;
+}
+
+.primaryButton:disabled {
+  background: #a7bdf7;
+  border-color: #a7bdf7;
+  cursor: not-allowed;
+}
+
+.secondaryButton,
+.secondaryLinkButton {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1a1a1a;
+}
+
+.dangerButton {
+  background: #ffffff;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+}
+
+.state,
+.error,
+.empty {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #475569;
+  margin: 0;
+  padding: 16px;
+}
+
+.state {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.error {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #be123c;
+}
+
+.spinner {
+  animation: spin 0.8s linear infinite;
+  border: 2px solid #d7dce3;
+  border-top-color: #2563eb;
+  border-radius: 999px;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+}
+
+.modalBackdrop {
+  align-items: center;
+  background: rgba(15, 23, 42, 0.42);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 24px;
+  position: fixed;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.22);
+  display: grid;
+  gap: 14px;
+  max-width: 440px;
+  padding: 22px;
+  width: 100%;
+}
+
+.wideModal {
+  max-width: 760px;
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+}
+
+.modal h2 {
+  margin: 0;
+}
+
+.formGrid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.weekdayFieldset {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 12px;
+}
+
+.weekdayFieldset legend {
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 750;
+  padding: 0 6px;
+}
+
+.weekdayGrid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.reminderOptionGrid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reminderOptionGrid label {
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  font-weight: 700;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px;
+}
+
+.weekdayGrid label {
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  font-weight: 700;
+  gap: 8px;
+  justify-content: center;
+  min-height: 40px;
+  padding: 8px;
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Reminder config picker ── */
+
+.reminderConfigSection {
+  display: grid;
+  gap: 8px;
+}
+
+.reminderConfigRow {
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  justify-content: space-between;
+  min-height: 42px;
+  padding: 8px 12px;
+}
+
+.reminderRemoveBtn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.reminderRemoveBtn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.reminderAddRow {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.reminderAddLabel {
+  color: #475569;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.reminderDaysInput {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #1a1a1a;
+  font: inherit;
+  height: 42px;
+  padding: 8px 10px;
+  width: 70px;
+}
+
+.reminderTimeInput {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #1a1a1a;
+  font: inherit;
+  height: 42px;
+  padding: 8px 10px;
+  width: 110px;
+}
+
+/* ── Template variable helper ── */
+
+.varSection {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 10px;
+}
+
+.varToggle {
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 0;
+}
+
+.varGrid {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  margin-top: 8px;
+}
+
+.varChip {
+  align-items: flex-start;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  gap: 2px;
+  padding: 8px 10px;
+  text-align: left;
+  transition: border-color 120ms;
+}
+
+.varChip:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+}
+
+.varChip code {
+  color: #1d4ed8;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.varChip span {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ── Email colour editor ─────────────────────────────────── */
+.colorEditorSection {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+.colorEditorTitle {
+  font-size: 16px;
+  margin: 0;
+}
+
+.colorEditorGrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.colorEditorField {
+  color: #1a1a1a;
+  display: grid;
+  font-size: 13px;
+  font-weight: 700;
+  gap: 6px;
+}
+
+.colorEditorField span {
+  color: #64748b;
+}
+
+.colorEditorInput {
+  align-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+  padding: 4px 8px 4px 4px;
+}
+
+.colorEditorInput input[type="color"] {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: 30px;
+  padding: 0;
+  width: 34px;
+}
+
+.colorEditorInput input[type="text"] {
+  border: none;
+  color: #1a1a1a;
+  font: inherit;
+  font-size: 13px;
+  min-width: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* ── Caller view ─────────────────────────────────────────── */
+.callerForm {
+  display: grid;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.callerFormActions {
+  display: flex;
+  gap: 10px;
+}
+
+.callerInactive {
+  opacity: 0.6;
+}
+
+.callerHeader {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.callerName {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.callerBadgeOff {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 99px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+}
+
+.callerActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.callerStats {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  margin-top: 12px;
+}
+
+.callerStat {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.callerStat span {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.callerStat strong {
+  color: #1a1a1a;
+  font-size: 18px;
+}
+
+.callerLinks {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.callerLinkRow {
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 140px minmax(0, 1fr) auto;
+  padding: 8px 12px;
+}
+
+.callerLinkLabel {
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.callerLinkUrl {
+  color: #475569;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.callerCopyBtn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  color: #1a1a1a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.callerCopyBtn:hover {
+  background: #f1f5f9;
+}

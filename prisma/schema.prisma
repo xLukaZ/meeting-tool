@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Caller {
+  id        String         @id @default(uuid())
+  name      String
+  slug      String         @unique
+  isActive  Boolean        @default(true)
+  createdAt DateTime       @default(now())
+  meetings  MeetingToken[]
+}
+
+model MeetingToken {
+  id                    String   @id @default(uuid())
+  confirmationTokenHash String   @unique
+  rescheduleTokenHash   String   @unique
+  cancelTokenHash       String   @unique
+  encryptedConfirmationToken String
+  encryptedRescheduleToken   String
+  encryptedCancelToken       String
+
+  // Google
+  googleEventId     String?
+  googleMeetLink    String?
+  meetLink          String?
+  googleSyncStatus  String  @default("pending")
+
+  // HubSpot
+  hubspotMeetingId    String?
+  hubspotContactEmail String?
+  hubspotOwnerEmail   String?
+  hubspotSyncStatus   String  @default("pending")
+
+  // Mail
+  mailSyncStatus String    @default("pending")
+  reminderSentAt DateTime?
+  reminders      MeetingReminder[]
+
+  // Meeting details
+  mitarbeiterId String
+  mitarbeiter   Mitarbeiter @relation(fields: [mitarbeiterId], references: [id])
+
+  callerId String?
+  caller   Caller? @relation(fields: [callerId], references: [id])
+
+  startTime DateTime
+  endTime   DateTime
+
+  // Contact
+  email     String
+  firstName String
+  lastName  String
+  phone     String?
+  company   String?
+
+  status             MeetingStatus @default(PENDING)
+  confirmedAt        DateTime?
+  cancellationReason String?
+  syncError          String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  expiresAt          DateTime
+
+  @@index([email])
+  @@index([confirmationTokenHash])
+  @@index([rescheduleTokenHash])
+  @@index([cancelTokenHash])
+  @@index([status])
+}
+
+model Mitarbeiter {
+  id         String  @id @default(uuid())
+  name       String
+  email      String  @unique
+  slug       String? @unique
+  calendarId String  @default("primary")
+  isActive   Boolean @default(true)
+
+  // Public booking page
+  bookingTitle  String @default("Termin buchen")
+  bookingIntro  String @default("Wählen Sie einen freien Termin für ein persönliches Beratungsgespräch.")
+  bookingNote   String @default("360 Vista Beratung per Google Meet")
+  disabledWeekdays Int[] @default([0])
+  meetingDurationMinutes Int @default(30)
+  workStartMinutes       Int @default(480)
+  workEndMinutes         Int @default(1080)
+  bufferBeforeMinutes    Int @default(0)
+  bufferAfterMinutes     Int @default(0)
+  reminderLeadMinutes    Int @default(1440)
+  reminderLeadOptions    Int[] @default([1440])
+  reminderConfigs        Json?
+
+  // Google OAuth, encrypted at rest.
+  accessToken  String?
+  refreshToken String?
+  tokenExpiry  DateTime?
+
+  // Employee SMTP, password encrypted at rest.
+  smtpHost      String?
+  smtpPort      Int?
+  smtpSecure    Boolean @default(false)
+  smtpUsername  String?
+  smtpPassword  String?
+  smtpFromName  String?
+  smtpFromEmail String?
+
+  // Employee-specific mail and ICS copy.
+  icsDescription String @default("Ihr Termin mit 360 Vista findet per Google Meet statt.")
+  emailTemplates Json?
+  emailColors    Json?
+
+  meetings MeetingToken[]
+}
+
+model MeetingReminder {
+  id              String   @id @default(uuid())
+  meetingId       String
+  meeting         MeetingToken @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  leadMinutes     Int
+  scheduledSendAt DateTime
+  sentAt          DateTime?
+  status          String   @default("scheduled")
+  error           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([meetingId, leadMinutes])
+  @@index([scheduledSendAt])
+  @@index([status])
+}
+
+model AdminAccount {
+  id          String   @id @default(uuid())
+  googleEmail String   @unique
+  googleId    String   @unique
+  name        String?
+  createdAt   DateTime @default(now())
+  lastLoginAt DateTime?
+}
+
+model HubSpotSettings {
+  id                   String   @id @default("global")
+  encryptedAccessToken String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+enum MeetingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  RESCHEDULED
+  COMPLETED
+}
