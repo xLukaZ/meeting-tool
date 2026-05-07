@@ -46,6 +46,7 @@ export async function GET(request) {
         company: true,
         status: true,
         confirmedAt: true,
+        rescheduledAt: true,
         cancellationReason: true,
         syncError: true,
         createdAt: true,

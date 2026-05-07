@@ -59,6 +59,7 @@ export async function POST(request) {
         endTime: new Date(newEndTime),
         status: "RESCHEDULED",
         confirmedAt: null,
+        rescheduledAt: new Date(),
         expiresAt: new Date(new Date(newEndTime).getTime() + 7 * 24 * 60 * 60 * 1000),
         googleSyncStatus: "pending",
         hubspotSyncStatus: "pending",

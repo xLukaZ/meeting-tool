@@ -268,6 +268,7 @@ export default function AdminDashboard({ integrations, adminEmail }) {
     return {
       booked: meetings.length,
       confirmed: meetings.filter((meeting) => meeting.status === "CONFIRMED" || meeting.confirmedAt).length,
+      rescheduled: meetings.filter((meeting) => meeting.rescheduledAt).length,
       attended: meetings.filter((meeting) => meeting.status === "COMPLETED").length,
       today: meetings.filter(
         (meeting) => isActiveStatus(meeting.status) && isBetween(meeting.startTime, todayStart, tomorrow)
@@ -569,6 +570,7 @@ export default function AdminDashboard({ integrations, adminEmail }) {
             <div className={styles.statsGrid}>
               <StatCard label="Gebucht" value={stats.booked} />
               <StatCard label="Bestätigt" value={stats.confirmed} />
+              <StatCard label="Umgebucht" value={stats.rescheduled} />
               <StatCard label="Wahrgenommen" value={stats.attended} />
               <StatCard label="Heute" value={stats.today} />
               <StatCard label="Sync-Fehler" value={stats.failed} />

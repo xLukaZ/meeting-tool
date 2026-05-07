@@ -61,6 +61,7 @@ model MeetingToken {
 
   status             MeetingStatus @default(PENDING)
   confirmedAt        DateTime?
+  rescheduledAt      DateTime?
   cancellationReason String?
   syncError          String?
   createdAt          DateTime @default(now())
